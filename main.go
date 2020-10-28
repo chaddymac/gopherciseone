@@ -15,8 +15,15 @@ type QAPair struct {
 	Ans   string
 }
 
+func main() {
+
+	problems := readProblems()
+	arrStruct := parseProblems(problems)
+	compAns(arrStruct)
+}
+
 func readProblems() [][]string {
-	//TO DO:read in a quiz provided via a CSV file, GO CSV file plug in
+
 	//reading in the CSV file
 	csvFlag := flag.String("csvFile", "problems.csv", "CSV file question,answer")
 	flag.Parse()
@@ -54,7 +61,7 @@ func parseProblems(problems [][]string) []QAPair {
 	return arrStruct
 }
 
-func compAns(arrStruct []QAPair) string {
+func compAns(arrStruct []QAPair) {
 	correctAns := 0
 	incorrectAns := 0
 	for _, questAnsPair := range arrStruct {
@@ -71,16 +78,4 @@ func compAns(arrStruct []QAPair) string {
 	fmt.Println("You got", correctAns, "answers correct!")
 	fmt.Println("You got", incorrectAns, "answers incorrect")
 	fmt.Println("There were", correctAns+incorrectAns, "questions total")
-	return "no"
-}
-
-//TO DO: keeping track of how many questions they get right. the next question should be asked immediately afterwards.
-
-//TO DO: At the end of the quiz the program should output the total number of questions correct and how many questions there were in total.
-
-func main() {
-
-	problems := readProblems()
-	arrStruct := parseProblems(problems)
-	compAns(arrStruct)
 }
