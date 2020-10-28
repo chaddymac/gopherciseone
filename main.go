@@ -21,7 +21,7 @@ func readProblems() [][]string {
 	csvFlag := flag.String("csvFile", "problems.csv", "CSV file question,answer")
 	flag.Parse()
 
-	csvFile, err := os.Open("problems.csv")
+	csvFile, err := os.Open(*csvFlag)
 	if err != nil {
 		fmt.Printf("Your file %s failed to open", *csvFlag)
 		os.Exit(1)
