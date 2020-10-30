@@ -41,6 +41,7 @@ func readProblems() [][]string {
 		fmt.Printf("Your file %s failed to open", *csvFlag)
 		os.Exit(1)
 	}
+
 	reader := csv.NewReader(csvFile)
 
 	//parsing through each line on the CSV file
@@ -74,24 +75,24 @@ func compAns(arrStruct []QAPair) {
 	incorrectAns := 0
 
 	timeoutChannel := make(chan bool, 1)
-	nameChannel := make(chan int, 1)
+	nameChannel := make(chan bool, 1)
 	userAnswer := ""
-	//Calling NewTimer method
 
-	//c := make(chan int)
 	for _, questAnsPair := range arrStruct {
 		fmt.Println(questAnsPair.Quest)
-
+		//go routines allow you to run this code without stopping the program.
+		// allows you to start the countdown while waiting for the users input.
 		go func() {
 			fmt.Scanln(&userAnswer)
-			nameChannel <- 1
+			nameChannel <- true
 		}()
-
+		//
 		go func() {
 			time.Sleep(time.Duration(*timeFlag) * time.Second)
 			timeoutChannel <- true
 		}()
-
+		//select catches the channels when they get set. similar to a javascript onclick
+		//channel acts as a listener for the channels
 		select {
 		case <-nameChannel:
 
