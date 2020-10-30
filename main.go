@@ -101,6 +101,7 @@ func compAns(arrStruct []QAPair) {
 			} else {
 				incorrectAns = incorrectAns + 1
 			}
+			//prints the following statements once the time is up
 		case <-timeoutChannel:
 			fmt.Println("You got", correctAns, "answers correct!")
 			fmt.Println("You got", incorrectAns, "answers incorrect")
