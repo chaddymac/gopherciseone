@@ -25,7 +25,7 @@ var (
 func main() {
 	//parsing the flag
 	flag.Parse()
-	fmt.Println(" Press Enter to Begin")
+	fmt.Println("Press Enter to Begin")
 	var beginTimer string
 	fmt.Scanln(&beginTimer)
 	problems := readProblems()
