@@ -75,7 +75,7 @@ func compAns(arrStruct []QAPair) {
 	incorrectAns := 0
 
 	timeoutChannel := make(chan bool, 1)
-	nameChannel := make(chan bool, 1)
+	answerChannel := make(chan bool, 1)
 	userAnswer := ""
 
 	for _, questAnsPair := range arrStruct {
